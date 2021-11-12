@@ -23,7 +23,7 @@ utilLogger = logging.getLogger()
 
 # Set up database
 DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://')
+DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
 engine = create_engine(DATABASE_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
@@ -350,17 +350,17 @@ def get_hotness(item):
 
     # score scales with: upvotes
     # score unscales with: time passed, size of
+    time_penalizer = 1 / (1 + math.exp((-item["min_passed"]-100) / (60 * 6))) ** 4
     if item["platform"] == "reddit":
         subreddit_size_penalizer = item["subscribers"] / 10e6
+        # sigmoid scale score with time passed
         hotness = (relative_reddit_weight * item["score"]) / (
-            item["subscribers"]
-            * max(1, item["min_passed"]) ** 1.5
-            * subreddit_size_penalizer
+            item["subscribers"] * time_penalizer * subreddit_size_penalizer
         )
 
     # weight the hackernews items differently
     elif item["platform"] == "hackernews":
-        hotness = item["score"] / (item["min_passed"] ** 1.5)
+        hotness = item["score"] / (time_penalizer)
 
     return hotness
 
