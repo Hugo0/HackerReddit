@@ -6,4 +6,3 @@ werkzeug
 requests
 praw
 gunicorn
-postgresql
