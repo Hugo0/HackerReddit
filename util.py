@@ -22,8 +22,9 @@ import logging
 utilLogger = logging.getLogger()
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
-
+DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://')
+engine = create_engine(DATABASE_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
 # instantiate reddit api
