@@ -1,9 +1,15 @@
 from util import *
 from sqlalchemy import create_engine, exc
-import secret
+try:
+    import secret
+except ImportError:
+    pass
 import config
+import os
 
-engine = create_engine(secret.DATABASE_URL)
+DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL.replace('postgres://', 'postgresql://')
+engine = create_engine(DATABASE_URL)
 
 
 def drop_tables():

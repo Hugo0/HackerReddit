@@ -47,6 +47,9 @@ rootLogger.info("-" * 40)
 
 
 # Set up database
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL.replace('postgres://', 'postgresql://')
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
