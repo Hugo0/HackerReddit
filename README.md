@@ -13,7 +13,7 @@ profile of the author or the link itself. Most other text is also interactable, 
 ### Future Improvements:
 - additional news-sources (e.g. RSS-feeds)
 - custom weighing of news sources/subreddits (user-chosen weights)
-- upvote functionality directly from HackeReddit using Oauth2
+- upvote functionality directly from HackerReddit using Oauth2
 - automatically subscribe to subreddits when authenticating with Reddit account
 
 ### Files:
