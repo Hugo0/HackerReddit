@@ -1,4 +1,4 @@
-# HackeReddit
+# HackerReddit
 
 I love both HackerNews and Reddit. They both have a fast, minimalist website design, they both have great communities and great content.
 
