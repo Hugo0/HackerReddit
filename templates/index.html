@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<br>
+{% for item in items %}
+{% if item.platform == 'hackernews' %}
+<!-- numbering, upvote arrows, title, url -->
+<tr class='athing' id="{{item['id']}}">
+    <!-- Number at the left of a post -->
+    <td align="right" valign="top" class="title"><span class="rank">{{loop.index}}.</span></td>
+
+    <td valign="top" class="votelinks center">&nbsp;&nbsp;&nbsp;</td>
+
+    <!-- post domain indicator -->
+    <td class="title"><img src="static/img/y18.gif" width="16"><a href="{{item['url']}}"
+            class="storylink">&nbsp;{{item['title']}}</a><span class="sitebit comhead">
+            (<a href="https://news.ycombinator.com/from?site={{item['domain']}}"><span
+                    class="sitestr">{{item['domain']}}</span></a>)</span></td>
+</tr>
+
+<!-- info about the post (score, time posted, comments, author) -->
+<tr>
+    <td colspan="2"></td>
+    <td class="subtext">
+        <span class="score">{{item['score']}} points</span> by <a
+            href="https://news.ycombinator.com/user?id={{item['by']}}" class="hnuser">{{item['by']}}</a> <span
+            class="age"><a href="{{item['permalink']}}">
+                {{item['min_passed'] //60}} hours ago</a></span>
+        | <a href="{{item['permalink']}}">{{item['num_comments']}} comments</a>
+    </td>
+</tr>
+<tr class="spacer" style="height:5px"></tr>
+
+{% else %}
+<!-- numbering, upvote arrows, title, url -->
+<tr class='athing' id="{{item['id']}}">
+    <!-- Number at the left of a post -->
+    <td align="right" valign="top" class="title"><span class="rank">{{loop.index}}.</span></td>
+
+    <td valign="top" class="votelinks center"></td>
+
+    <!-- post domain indicator -->
+    <td class="title"><img src="static/img/reddit.png" width="16"><a href="{{item['url']}}"
+            class="storylink">&nbsp;{{item['title']}}</a><span class="sitebit comhead">
+            (<a href="https://news.ycombinator.com/from?site={{item['domain']}}"><span
+                    class="sitestr">{{item['domain']}}</span></a>)</span></td>
+</tr>
+
+<!-- info about the post (score, time posted, comments, author) -->
+<tr>
+    <td colspan="2"></td>
+    <td class="subtext">
+        <span class="score">{{item['score']}} points</span> by <a href="https://reddit.com/u/{{item['by']}}"
+            class="hnuser">{{item['by']}}</a> <span class="age"><a href="{{item['permalink']}}">
+                {{item['min_passed'] //60}} hours ago</a></span> |
+        <a href="https://reddit.com/r/{{item['subreddit']}}">{{item['subreddit']}}</a>
+        | <a href="{{item['permalink']}}">{{item['num_comments']}} comments</a>
+    </td>
+</tr>
+<tr class="spacer" style="height:5px"></tr>
+
+{% endif %}
+{% endfor %}
+
+<!-- More button for infinite scrolling -->
+<tr class="spacer" style="height:5px"></tr>
+<tr class="morespace" style="height:10px"></tr>
+<tr>
+    <td colspan="2"></td>
+    <td class="title"><a href="https://news.ycombinator.com/news?p=2" class="morelink" rel="next">More</a></td>
+</tr>
+{% endblock %}

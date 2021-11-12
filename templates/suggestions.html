@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    {% if 'username' in session%}
+    <h5>Hi {{session['username']}}!</h5>
+    {% else %}
+    <h5>Hi!</h5>
+    {% endif %}
+
+    <p> Do you have any suggestions on how to improve this website? Please enter them below and send them to me! </p>
+
+    <form method="post" action="mailto:hackereddit@hmontenegro.com">
+        <textarea name="message" style="width: 50%;"></textarea><br>
+        <input type="submit">
+    </form>
+</div>
+
+{% endblock %}

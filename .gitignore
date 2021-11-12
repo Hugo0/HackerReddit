@@ -1,0 +1,5 @@
+secret.py
+data.db
+*.log
+venv/
+__pycache__/

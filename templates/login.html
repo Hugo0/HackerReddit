@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" style="margin-top: 30px;">
+    {% if message is defined %}
+    <h3>{{message}}</h3>
+    {% endif %}
+
+    {% if not hide_login %}
+    <form name="login" id="login" action="/login" accept-charset="UTF-8" method="post">
+        <div class="form-group input-sm">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control input-sm" placeholder="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control input-sm" name="password" placeholder="password">
+        </div>
+        <input type="submit" value="login" class="ar-button ar-button--dark">
+    </form>
+    {% endif %}
+
+    <p style="margin-top: 100px; color: black;">Or, if you are a new user, you can register here:</p>
+    <form name="register" id="register" action="/register" accept-charset="UTF-8" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="johnharvard" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="hunter2" required>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail &nbsp;<span style="font-size: 80%; color:black;">(optional)</span></label>
+            <input type="email" class="form-control" name="email" placeholder="johnthebest@harvard.edu">
+        </div>
+        <input type="submit" value="register" class="">
+    </form>
+</div>
+
+{% endblock %}

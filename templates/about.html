@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h5 id="hackereddit">HackerReddit</h5>
+
+    <p>I love both HackerNews and Reddit. They both have a fast, minimalist website design, they both have great
+        communities and great content.</p>
+
+    <p>So, my project is to have a unified way of viewing these two!</p>
+
+    <p>How it works: By default, you will see a mix of top HN posts and posts of a few default subreddits, all mixed in
+        the same page. If you
+        wish to sign up, you can also customize the list of subreddits that will appear on your frontpage. <em>Future:
+            You will also be able to weight different news sources according to your preferences. E.g. give Hackernews a
+            weight of 0.5x, and /r/cats maybe a 2x)</em></p>
+
+    <p>Of course, you can navigate to the original HN/Reddit post at any time by simply clicking the comment section.
+        You can also view the
+        profile of the author or the link itself. Most other text is also interactable, e.g. you can go to the original
+        subreddit, or check out all HN posts on that specific domain, etc...</p>
+
+    <b id="futureimprovements">Future Improvements:</b>
+
+    <ul>
+        <li>additional news-sources (e.g. RSS-feeds)</li>
+
+        <li>custom weighing of news sources/subreddits (user-chosen weights)</li>
+
+        <li>upvote functionality directly from HackeReddit using Oauth2</li>
+    </ul>
+</div>
+
+
+{% endblock %}

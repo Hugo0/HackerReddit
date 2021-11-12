@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container userinfo">
+    <p>Your Username: <b>{{user['username']}}</b></p>
+    <p>Your Email: <b>{{user['email']}}</b></p>
+    <p>Subscribed Subreddits: 
+        {% for subreddit in subreddits %}
+        {% if subreddit is not none %}
+        <a href="https://www.reddit.com/r/{{subreddit[0]}}"><b>{{subreddit[0]}}</b></a> |
+        {% endif %}
+        {% endfor %}
+    </p>
+
+    <form action="/user/add_subreddit" method="post" accept-charset="UTF-8">
+        Add subreddit to newsfeed: <input type="text" name="subreddit">
+        <input type="text" name="username" value="{{user['username']}}" hidden>
+        <input type="submit" value="Submit" hidden>
+    </form>
+    <br><br>
+    <form action="/user/remove_subreddit" method="post" accept-charset="UTF-8">
+        Remove subreddit from newsfeed: <input type="text" name="subreddit">
+        <input type="text" name="username" value="{{user['username']}}" hidden>
+        <input type="submit" value="Submit" hidden>
+    </form>
+</div>
+
+{% endblock %}

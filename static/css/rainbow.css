@@ -1,0 +1,130 @@
+/* Code for flashy error messages*/
+/* SOURCE: https://codepen.io/cb_rn/pen/OVXXmj */
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+.rainbow {
+  
+   /* Font options */
+  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px 4px #000000;
+  font-size:40px;
+  
+   /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow 1s infinite; 
+  
+  /* Internet Explorer */
+  -ms-animation: rainbow 1s infinite;
+  
+  /* Standard Syntax */
+  animation: rainbow 1s infinite; 
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow{
+  0%{color: orange;}	
+  10%{color: purple;}	
+	20%{color: red;}
+  30%{color: CadetBlue;}
+	40%{color: yellow;}
+  50%{color: coral;}
+	60%{color: green;}
+  70%{color: cyan;}
+  80%{color: DeepPink;}
+  90%{color: DodgerBlue;}
+	100%{color: orange;}
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow{
+   0%{color: orange;}	
+  10%{color: purple;}	
+	20%{color: red;}
+  30%{color: CadetBlue;}
+	40%{color: yellow;}
+  50%{color: coral;}
+	60%{color: green;}
+  70%{color: cyan;}
+  80%{color: DeepPink;}
+  90%{color: DodgerBlue;}
+	100%{color: orange;}
+}
+
+/* Standard Syntax */
+@keyframes rainbow{
+    0%{color: orange;}	
+  10%{color: purple;}	
+	20%{color: red;}
+  30%{color: CadetBlue;}
+	40%{color: yellow;}
+  50%{color: coral;}
+	60%{color: green;}
+  70%{color: cyan;}
+  80%{color: DeepPink;}
+  90%{color: DodgerBlue;}
+	100%{color: orange;}
+}
+
+.rainbow-background {
+  
+    /* Font options */
+   font-family: 'Pacifico', cursive;
+   text-shadow: 2px 2px 4px #000000;
+   font-size:40px;
+   
+    /* Chrome, Safari, Opera */
+   -webkit-animation: rainbow-background 5s infinite; 
+   
+   /* Internet Explorer */
+   -ms-animation: rainrainbow-background 5s infinite;
+   
+   /* Standard Syntax */
+   animation: rainbow-background 5s infinite; 
+ }
+ 
+ /* Chrome, Safari, Opera */
+ @-webkit-keyframes rainbow-background{
+   0%{background-color: orange;}	
+   10%{background-color: purple;}	
+     20%{background-color: red;}
+   30%{background-color: CadetBlue;}
+     40%{background-color: yellow;}
+   50%{background-color: coral;}
+     60%{background-color: green;}
+   70%{background-color: cyan;}
+   80%{background-color: DeepPink;}
+   90%{background-color: DodgerBlue;}
+     100%{background-color: orange;}
+ }
+ 
+ /* Internet Explorer */
+ @-ms-keyframes rainbow-background{
+    0%{background-color: orange;}	
+   10%{background-color: purple;}	
+     20%{background-color: red;}
+   30%{background-color: CadetBlue;}
+     40%{background-color: yellow;}
+   50%{background-color: coral;}
+     60%{background-color: green;}
+   70%{background-color: cyan;}
+   80%{background-color: DeepPink;}
+   90%{background-color: DodgerBlue;}
+     100%{background-color: orange;}
+ }
+ 
+ /* Standard Syntax */
+ @keyframes rainbow-background{
+     0%{background-color: orange;}	
+   10%{background-color: purple;}	
+     20%{background-color: red;}
+   30%{background-color: CadetBlue;}
+     40%{background-color: yellow;}
+   50%{background-color: coral;}
+     60%{background-color: green;}
+   70%{background-color: cyan;}
+   80%{background-color: DeepPink;}
+   90%{background-color: DodgerBlue;}
+     100%{background-color: orange;}
+ }
+ 

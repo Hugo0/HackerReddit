@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HackerReddit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap v4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="../static/css/rainbow.css">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+</head>
+
+<body id="body" class="center">
+    <table id="hnmain" cellpadding="0" cellspacing="0" width="85%" class="left">
+
+        <!-- top of page navbar -->
+        <tr>
+            <td class="navbar" id="topnavbar">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
+                    <tr>
+                        <td style="width:18px;padding-right:8px"><a href="/"><img src="/static/img/favicon.ico"
+                                    width="18" height="18" style="border:1px white solid;"></a></td>
+                        <td style="line-height:12pt; height:10px;"><span class="pagetop"><b class="hnname"><a
+                                        href="/">HackeReddit &nbsp;&nbsp;</a></b>
+                                <a href="/">hot</a> | <a href="/new">new</a> | <a
+                                    href="https://news.ycombinator.com/ask">ask</a> | <a
+                                    href="https://news.ycombinator.com/show">show</a> |
+                                <a href="https://news.ycombinator.com/jobs">jobs</a>
+                            </span></td>
+                        <td style="text-align:right;padding-right:4px;"><span class="pagetop">
+                                {% if not session['logged_in'] %}
+                                <a href="/login">login</a>
+                                {% else %}
+                                <a id='me' href="/user/{{session['username']}}">{{session['username']}}</a> |
+                                <a href="/user/{{session['username']}}">preferences</a> |
+                                <a id='logout' href="/logout">logout</a>
+                                {% endif %} |
+                                <a name="dark_light" href="#" onclick="toggleDarkLight()" title="Toggle dark/light mode"
+                                    size="10"> 🌛</a>
+                            </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" class="itemlist">
+
+                    <!-- The actual content, all items will be displayed here -->
+                    {% block content %}
+                    {% endblock %}
+
+                </table>
+            </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr class="center">
+            <td><img src="s.gif" height="10" width="0">
+                <table width="100%" cellspacing="0" cellpadding="1">
+                    <tr>
+                        <td style="background-color: #ff6600"></td>
+                    </tr>
+                </table><br>
+                <span class="yclinks center">
+                    <a href="/about">About</a>
+                    | <a href="/suggestions">Suggestions</a>
+                    | <a href="/legal">Legal</a>
+                    | <a href="mailto:hackereddit@hmontenegro.com">Email me</a></span><br><br>
+
+                <!-- Search function for HN (redirects) -->
+                <form method="get" action="//hn.algolia.com/">Search:
+                    <input type="text" name="q" value="" size="17" autocorrect="off" spellcheck="false"
+                        autocapitalize="off" autocomplete="false"></form>
+
+            </td>
+        </tr>
+
+    </table>
+</body>
+
+<!-- Javascript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+<script type='text/javascript' src='static/js/custom.js'></script>
+
+</html>
