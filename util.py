@@ -345,14 +345,14 @@ def update_hotness():
 def get_hotness(item):
     # NEEDS WORK!
     # TODO: weight repeated submission from same subreddit lower
-    relative_reddit_weight = 1
-    subreddit_size_penalizer_compensation = 10e4 # insert average subreddit size here or similar
+    relative_reddit_weight = 2
+    subreddit_size_penalizer_compensation = 10e3 # insert average subreddit size here or whatever
     curve_width = 360
 
     # score scales with: upvotes
     time_penalizer = 2 / (1 + math.exp((-item["min_passed"]-360) / curve_width)) - 1
     if item["platform"] == "reddit":
-        subreddit_size_penalizer = item["subscribers"]
+        subreddit_size_penalizer = item["subscribers"] ** 0.9
         # sigmoid scale score with time passed
         hotness = (relative_reddit_weight * item["score"] * subreddit_size_penalizer_compensation) / (
             time_penalizer * subreddit_size_penalizer
