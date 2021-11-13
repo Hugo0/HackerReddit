@@ -1,48 +1,25 @@
 import util
 
 
-def generate_test_submissions():
-    # generate a list of submissions
-    top = util.get_top(100)
-    submissions_clean = []
-    for submission in top:
-        submissions_clean.append(
-            {
-                "platform": submission["platform"],
-                "score": submission["score"],
-                "min_passed": submission["min_passed"],
-                "subscribers": submission["subscribers"],
-                # "title": submission["title"],
-            }
-        )
-    for i in submissions_clean:
-        print(f"{i},")
+# def generate_test_submissions():
+#     # generate a list of submissions
+#     top = util.get_top(100)
+#     submissions_clean = []
+#     for submission in top:
+#         submissions_clean.append(
+#             {
+#                 "platform": submission["platform"],
+#                 "score": submission["score"],
+#                 "min_passed": submission["min_passed"],
+#                 "subscribers": submission["subscribers"],
+#                 # "title": submission["title"],
+#             }
+#         )
+#     for i in submissions_clean:
+#         print(f"{i},")
 
 
 test_submissions = [
-    {"title": "hn_test1", "platform": "hackernews", "min_passed": 0, "score": 2},
-    {
-        "title": "r_test1",
-        "platform": "reddit",
-        "min_passed": 600,
-        "score": 300,
-        "subscribers": 500000,
-    },
-    {
-        "title": "hn_test2",
-        "platform": "hackernews",
-        "min_passed": 300,
-        "score": 1000,
-        "subscribers": 10e6,
-    },
-    {
-        "title": "r_test2",
-        "platform": "reddit",
-        "min_passed": 120,
-        "score": 123,
-        "subscribers": 2 * 10e6,
-    },
-    {"title": "hn_test1", "platform": "hackernews", "min_passed": 3, "score": 20},
     {"platform": "reddit", "score": 1110, "min_passed": 782, "subscribers": 646772},
     {"platform": "reddit", "score": 362, "min_passed": 529, "subscribers": 603325},
     {"platform": "hackernews", "score": 39, "min_passed": 47, "subscribers": None},
@@ -145,11 +122,11 @@ test_submissions = [
     {"platform": "hackernews", "score": 80, "min_passed": 910, "subscribers": None},
 ]
 
-submissions_hotness = []
 for submission in test_submissions:
     hotness = util.get_hotness(submission)
-    submissions_hotness.append(hotness)
+    submission["hotness"] = hotness
 
-# print out ranked list of hotness along with item
-for i, hotness in enumerate(sorted(submissions_hotness, reverse=True)):
-    print(i, hotness, test_submissions[i])
+# print out sorted list by hotness
+test_submissions.sort(key=lambda x: x["hotness"])
+for submission in test_submissions:
+    print(f"{submission['platform']}: {submission['hotness']} : {submission['score']} : {submission['min_passed']} : {submission['subscribers']}")

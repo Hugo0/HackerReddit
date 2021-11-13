@@ -34,7 +34,6 @@ reddit = praw.Reddit(
     user_agent=os.getenv("REDDIT_USER_AGENT"),
 )
 
-
 # returns the top X stories based on hotness
 def get_top(n=40, i=0, username=None, subreddits=config.DEFAULT_SUBREDDITS, new=False):
 
@@ -346,16 +345,17 @@ def update_hotness():
 def get_hotness(item):
     # NEEDS WORK!
     # TODO: weight repeated submission from same subreddit lower
-    relative_reddit_weight = 150000
+    relative_reddit_weight = 1
+    subreddit_size_penalizer_compensation = 10e4 # insert average subreddit size here or similar
+    curve_width = 360
 
     # score scales with: upvotes
-    # score unscales with: time passed, size of
-    time_penalizer = 1 / (1 + math.exp((-item["min_passed"]-100) / (60 * 6))) ** 4
+    time_penalizer = 2 / (1 + math.exp((-item["min_passed"]-360) / curve_width)) - 1
     if item["platform"] == "reddit":
-        subreddit_size_penalizer = item["subscribers"] / 10e6
+        subreddit_size_penalizer = item["subscribers"]
         # sigmoid scale score with time passed
-        hotness = (relative_reddit_weight * item["score"]) / (
-            item["subscribers"] * time_penalizer * subreddit_size_penalizer
+        hotness = (relative_reddit_weight * item["score"] * subreddit_size_penalizer_compensation) / (
+            time_penalizer * subreddit_size_penalizer
         )
 
     # weight the hackernews items differently
