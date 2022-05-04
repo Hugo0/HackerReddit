@@ -69,5 +69,5 @@ def create_tables():
     engine.execute(query)
 
 
-# drop_tables()
+drop_tables()
 create_tables()
