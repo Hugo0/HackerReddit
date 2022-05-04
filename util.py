@@ -34,6 +34,7 @@ reddit = praw.Reddit(
     user_agent=os.getenv("REDDIT_USER_AGENT"),
 )
 
+
 # returns the top X stories based on hotness
 def get_top(n=40, i=0, username=None, subreddits=config.DEFAULT_SUBREDDITS, new=False):
 
@@ -245,6 +246,7 @@ def update_subreddit(subreddit):
 
     # get the current top reddit items
     r_items = get_top_R(subreddit)
+    subscribers = reddit.subreddit(subreddit).subscribers
 
     for r_item in r_items:
 
@@ -259,7 +261,7 @@ def update_subreddit(subreddit):
         parsed_uri = parsed_uri._replace(netloc=parsed_uri.netloc.replace("www.", ""))
         domain = "{uri.netloc}".format(uri=parsed_uri)
         permalink = "https://www.reddit.com/" + str(r_item.permalink)
-        subscribers = reddit.subreddit(subreddit).subscribers
+        
 
         # check if item exists in database
         item_row = db.execute(
